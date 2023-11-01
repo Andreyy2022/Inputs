@@ -1,10 +1,10 @@
-import styles from 'Inputs.module.css';
+import styles from './Inputs.module.css';
 
 function Inputs() {
     return <>
-        <input class={styles.inp1} />
-        <input class={styles.inp2} />
-        <input class={styles.inp3} />
+        <input className={styles.inp1} />
+        <input className={styles.inp2} />
+        <input className={styles.inp3} />
     </>
 };
 
