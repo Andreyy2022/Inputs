@@ -1,4 +1,4 @@
-import classes from './App.modules.css';
+import classes from './App.module.css';
 import Inputs from './components/Inputs.js';
 
 function App() {
