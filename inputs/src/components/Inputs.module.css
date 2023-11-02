@@ -1,16 +1,24 @@
+.common-inp {
+	font-size: 16px;
+	border-radius: 10px;
+}
+
 .inp1 {
+	composes: common-inp;
 	background-color: orange;
 	border: 2px solid brown;
 	color: white;
 }
 
 .inp2 {
+	composes: common-inp;
 	background-color: red;
 	border: 2px solid green;
 	color: yellow;
 }
 
 .inp3 {
+	composes: common-inp;
 	background-color: brown;
 	border: 2px solid yellowgreen;
 	color: orange;
