@@ -14,3 +14,9 @@
 	margin-top: 10px;
   color: blue;
 }
+
+.beauty { 
+	box-shadow: rgba(50, 50, 50, 0.7) 0 7px 7px 0;
+	font-weight: bold;
+	cursor: pointer;
+}
