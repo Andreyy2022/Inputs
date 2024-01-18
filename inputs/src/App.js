@@ -42,9 +42,14 @@ function App() {
     setObj({...obj, [prop]: event.target.value});
   }
 
+  function delObj(id) {
+    setArrObj(arrObj.filter( obj => obj.id != id ));
+  }
+
   const result = arrObj.map( obj => {
     return <p key={obj.id}>
       { obj.prop1 } { obj.prop2 } { obj.prop3 }
+      <button onClick={() => delObj(obj.id)}>удалить объект</button>
     </p>
   } )
 
