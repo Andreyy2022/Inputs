@@ -39,7 +39,7 @@ function App() {
     setObj( getEmptyObj );
   }
 
-  function change(prop, event) {
+  function changeNew(prop, event) {
     setObj({...obj, [prop]: event.target.value});
   }
 
@@ -57,7 +57,7 @@ function App() {
     } );
   }
 
-  function change(prop, event) {
+  function changeOld(prop, event) {
     setArrObj( arrObj.map( obj => {
       if (obj.id == idToEdit) {
         return {...obj, [prop]:event.target.value};
@@ -73,7 +73,7 @@ function App() {
       <br/>
       <button onClick={() => delObj(obj.id)}>удалить объект</button>
       <br/>
-      <button onClick={() => getValue(obj.id)}>редактировать текущий объект</button>
+      <button onClick={() => setIdToEdi(obj.id)}>редактировать текущий объект</button>
     </p>
   } );
 
@@ -87,17 +87,18 @@ function App() {
     {result}
     <br/>
     <div>ввод данных нового оъекта</div>
-    <input value={obj.prop1} onChange={event => change('prop1', event)} />
-    <input value={obj.prop2} onChange={event => change('prop2', event)} />
-    <input value={obj.prop3} onChange={event => change('prop3', event)} />
+    <input value={obj.prop1} onChange={event => changeNew('prop1', event)} />
+    <input value={obj.prop2} onChange={event => changeNew('prop2', event)} />
+    <input value={obj.prop3} onChange={event => changeNew('prop3', event)} />
     <br/>
     <button onClick={add}>добвить объект</button>
     <br/>
     <br/>
     <div>редактирование данных существующего объекта</div>
-    <input value={getValue('prop1')} onChange={event => change('prop1', event)} />
-    <input value={getValue('prop2')} onChange={event => change('prop2', event)} />
-    <input value={getValue('prop3')} onChange={event => change('prop3', event)} />
+    <input value={idToEdit ? getValue('prop1') : ''} onChange={event => changeOld('prop1', event)} />
+    <input value={idToEdit ? getValue('prop2') : ''} onChange={event => changeOld('prop2', event)} />
+    <input value={idToEdit ? getValue('prop3') : ''} onChange={event => changeOld('prop3', event)} />
+    <button onClick={() => setIdToEdi(null)}>сохранить изменения</button>
   </div>
   );
 }
