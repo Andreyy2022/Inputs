@@ -7,6 +7,11 @@ function App() {
   const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
   const [value, setValue] = useState('');
 
+  function addNewValue() {
+    setNotes([...notes, value]);
+    setValue('');
+  }
+
   const result = notes.map((note, index) => {
     return <li key={index}>
       {note}
@@ -23,7 +28,7 @@ function App() {
         {result}
       </ul>
       <input value={value} onChange={event => setValue(event.target.value)} />
-      <button onClick={() => setNotes([...notes, value])}>add</button>
+      <button onClick={addNewValue}>add</button>
   </div>
   );
 }
