@@ -11,9 +11,12 @@ function App() {
   }
 
   const result = notes.map((note, index) => {
-    return <li key={index} onClick={() => double(index, note)}>
-      {note}
-    </li>
+    return <div key={index}>
+        <li onClick={() => double(index, note)}>
+          {note}
+        </li>
+        <button onClick={() => setNotes([...notes.slice(0, index), ...notes.slice(index + 1)])}>delete</button>
+      </div>
   });
 
   return (
