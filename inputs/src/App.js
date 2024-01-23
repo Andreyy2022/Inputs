@@ -5,15 +5,13 @@ import { nanoid } from 'nanoid';
 
 function App() {
   const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
-  const [value, setValue] = useState('');
 
-  function addNewValue() {
-    setNotes([...notes, value]);
-    setValue('');
+  function double(index, note) {
+    setNotes( [...notes.slice(0, index), note ** 2, ...notes.slice(index + 1)] );
   }
 
   const result = notes.map((note, index) => {
-    return <li key={index}>
+    return <li key={index} onClick={() => double(index, note)}>
       {note}
     </li>
   });
@@ -27,8 +25,6 @@ function App() {
       <ul>
         {result}
       </ul>
-      <input value={value} onChange={event => setValue(event.target.value)} />
-      <button onClick={addNewValue}>add</button>
   </div>
   );
 }
