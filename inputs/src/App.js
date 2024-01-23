@@ -3,79 +3,15 @@ import classes from './App.module.css';
 import Inputs from './components/Inputs.js';
 import { nanoid } from 'nanoid';
 
-function getEmptyObj() {
-  const emptyObj = {
-    id: nanoid(),
-    prop1: ' ',
-    prop2: ' ',
-    prop3: ' ',
-  }
-
-  return emptyObj;
-}
-
-const mouseText = [
-  {
-     id: 'tl2zI5J3IbLwukybTEsIxXXb6',
-     prop1: 'Тише',
-     prop2: 'мыши',
-     prop3: 'кот на крыше',
-  },
-  {
-     id: 'ViWgVtvU2qRo6huLg18DdYuio',
-     prop1: 'А котята',
-     prop2: 'ещё',
-     prop3: 'выше',
-  },
-];
-
 function App() {
-  const [arrObj, setArrObj] = useState(mouseText);
-  const [obj, setObj] = useState( getEmptyObj() );
-  const [idToEdit, setIdToEdi] = useState(null);
+  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
+  const [value, setValue] = useState('');
 
-  function add() {
-    setArrObj([...arrObj, obj]);
-    setObj( getEmptyObj );
-  }
-
-  function changeNew(prop, event) {
-    setObj({...obj, [prop]: event.target.value});
-  }
-
-  function delObj(id) {
-    setArrObj(arrObj.filter( obj => obj.id != id ));
-  }
-
-  function getValue(prop) {
-    arrObj.reduce( (res, obj) => {
-      if (obj.id == idToEdit) {
-        return obj[prop];
-      } else {
-        return res;
-      }
-    } );
-  }
-
-  function changeOld(prop, event) {
-    setArrObj( arrObj.map( obj => {
-      if (obj.id == idToEdit) {
-        return {...obj, [prop]:event.target.value};
-      } else {
-        return obj;
-      }
-    } ) );
-  }
-
-  const result = arrObj.map( obj => {
-    return <p key={obj.id}>
-      { obj.prop1 } { obj.prop2 } { obj.prop3 }
-      <br/>
-      <button onClick={() => delObj(obj.id)}>удалить объект</button>
-      <br/>
-      <button onClick={() => setIdToEdi(obj.id)}>редактировать текущий объект</button>
-    </p>
-  } );
+  const result = notes.map((note, index) => {
+    return <li key={index}>
+      {note}
+    </li>
+  });
 
   return (
   <div className={classes.app}>
@@ -83,22 +19,11 @@ function App() {
     <div className={classes.wrapper}>
       <Inputs />
     </div>
-    <br/>
-    {result}
-    <br/>
-    <div>ввод данных нового оъекта</div>
-    <input value={obj.prop1} onChange={event => changeNew('prop1', event)} />
-    <input value={obj.prop2} onChange={event => changeNew('prop2', event)} />
-    <input value={obj.prop3} onChange={event => changeNew('prop3', event)} />
-    <br/>
-    <button onClick={add}>добвить объект</button>
-    <br/>
-    <br/>
-    <div>редактирование данных существующего объекта</div>
-    <input value={idToEdit ? getValue('prop1') : ''} onChange={event => changeOld('prop1', event)} />
-    <input value={idToEdit ? getValue('prop2') : ''} onChange={event => changeOld('prop2', event)} />
-    <input value={idToEdit ? getValue('prop3') : ''} onChange={event => changeOld('prop3', event)} />
-    <button onClick={() => setIdToEdi(null)}>сохранить изменения</button>
+      <ul>
+        {result}
+      </ul>
+      <input value={value} onChange={event => setValue(event.target.value)} />
+      <button onClick={() => setNotes([...notes, value])}>add</button>
   </div>
   );
 }
