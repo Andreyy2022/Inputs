@@ -13,16 +13,13 @@ function App() {
     setIndexValue(index);
   }
 
-  function replace(index) {
-    setNotes([...notes.slice(0, index), value, ...notes.slice(index + 1)]);
-    console.log(notes);
-    console.log(value);
-    console.log(indexValue);
+  function replace() {
+    setNotes([...notes.slice(0, indexValue), value, ...notes.slice(indexValue + 1)]);
   }
 
   const result = notes.map((note, index) => {
     return <div key={index}>
-        <li onClick={(note, index) => valueIndex(note, index)}>
+        <li onClick={() => valueIndex(note, index)}>
           {note}
         </li>
         <button onClick={() => setNotes([...notes.slice(0, index), ...notes.slice(index + 1)])}>delete</button>
