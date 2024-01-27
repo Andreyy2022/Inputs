@@ -17,6 +17,11 @@ function App() {
     setNotes([...notes.slice(0, indexValue), value, ...notes.slice(indexValue + 1)]);
   }
 
+  function changeEndNotes() {
+    setNotes(notes.reverse());
+  //  console.log(notes);
+  }
+
   const result = notes.map((note, index) => {
     return <div key={index}>
         <li onClick={() => valueIndex(note, index)}>
@@ -36,6 +41,9 @@ function App() {
         {result}
       </ul>
       <input value={value} onChange={(event) => setValue(event.target.value)} onBlur={indexValue => replace(indexValue)} />
+      <br/>
+      <button onClick={changeEndNotes}>reverse the lists</button>
+      {console.log(notes)}
   </div>
   );
 }
