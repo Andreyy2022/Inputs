@@ -3,31 +3,47 @@ import classes from './App.module.css';
 import Inputs from './components/Inputs.js';
 import { nanoid } from 'nanoid';
 
+const initNotes = [
+	{
+		id: 'GYi9G_uC4gBF1e2SixDvu',
+		prop1: 'value11',
+		prop2: 'value12',
+		prop3: 'value13',
+	},
+	{
+		id: 'IWSpfBPSV3SXgRF87uO74',
+		prop1: 'value21',
+		prop2: 'value22',
+		prop3: 'value23',
+	},
+	{
+		id: 'JAmjRlfQT8rLTm5tG2m1L',
+		prop1: 'value31',
+		prop2: 'value32',
+		prop3: 'value33',
+	},
+];
+
+function getNewObj() {
+  let newObj;
+  return  newObj = {
+      id: nanoid(),
+      prop1: '',
+      prop2: '',
+      prop3: '',
+    }
+}
+
 function App() {
-  const [notes, setNotes] = useState([1, 2, 3, 4, 5]);
-  const [value, setValue] = useState('');
-  const [indexValue, setIndexValue] = useState('');
+  const [notes, setNotes] = useState(initNotes);
+  const [valueNewObj, setValueNewObj] = useState(getNewObj());
 
-  function valueIndex(note, index) {
-    setValue(note);
-    setIndexValue(index);
-  }
-
-  function replace() {
-    setNotes([...notes.slice(0, indexValue), value, ...notes.slice(indexValue + 1)]);
-  }
-
-  function changeEndNotes() {
-    setNotes([...notes.reverse()]);
-  }
-
-  const result = notes.map((note, index) => {
-    return <div key={index}>
-        <li onClick={() => valueIndex(note, index)}>
-          {note}
-        </li>
-        <button onClick={() => setNotes([...notes.slice(0, index), ...notes.slice(index + 1)])}>delete</button>
-      </div>
+  const result = notes.map(note => {
+    return <li key={note.id}>
+      <span>{note.prop1}  </span>
+      <span>{note.prop2}  </span>
+      <span>{note.prop3}</span>
+    </li>
   });
 
   return (
@@ -39,9 +55,10 @@ function App() {
       <ul>
         {result}
       </ul>
-      <input value={value} onChange={(event) => setValue(event.target.value)} onBlur={indexValue => replace(indexValue)} />
-      <br/>
-      <button onClick={changeEndNotes}>reverse the lists</button>
+      <input value={valueNewObj.prop1} onChange={event => setValueNewObj({...valueNewObj, ['prop1']: event.target.value})}/>
+      <input value={valueNewObj.prop2} onChange={event => setValueNewObj({...valueNewObj, ['prop2']: event.target.value})}/>
+      <input value={valueNewObj.prop3} onChange={event => setValueNewObj({...valueNewObj, ['prop3']: event.target.value})}/>
+      {console.log(valueNewObj)}
   </div>
   );
 }
