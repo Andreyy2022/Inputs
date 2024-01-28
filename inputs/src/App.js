@@ -18,8 +18,13 @@ function App() {
   }
 
   function changeEndNotes() {
-    setNotes(notes.reverse());
-  //  console.log(notes);
+    let newArr = [];
+    for (let i = 0; i < notes.length; i++) {
+      newArr.push(notes.length - i);
+      console.log(newArr);
+    }
+    setNotes(newArr);
+    console.log(notes);
   }
 
   const result = notes.map((note, index) => {
