@@ -24,7 +24,13 @@ const initNotes = [
 	},
 ];
 
-function getNewObj() {
+
+
+function App() {
+  const [notes, setNotes] = useState(initNotes);
+  const [valueNewObj, setValueNewObj] = useState(getNewObj());
+
+  function getNewObj() {
   let newObj;
   return  newObj = {
       id: nanoid(),
@@ -32,11 +38,12 @@ function getNewObj() {
       prop2: '',
       prop3: '',
     }
-}
+  }
 
-function App() {
-  const [notes, setNotes] = useState(initNotes);
-  const [valueNewObj, setValueNewObj] = useState(getNewObj());
+  function add() {
+    setNotes([...notes, valueNewObj]);
+    setValueNewObj(getNewObj);
+  }
 
   const result = notes.map(note => {
     return <li key={note.id}>
@@ -58,7 +65,8 @@ function App() {
       <input value={valueNewObj.prop1} onChange={event => setValueNewObj({...valueNewObj, ['prop1']: event.target.value})}/>
       <input value={valueNewObj.prop2} onChange={event => setValueNewObj({...valueNewObj, ['prop2']: event.target.value})}/>
       <input value={valueNewObj.prop3} onChange={event => setValueNewObj({...valueNewObj, ['prop3']: event.target.value})}/>
-      {console.log(valueNewObj)}
+      <br/>
+      <button onClick={add}>add object</button>
   </div>
   );
 }
