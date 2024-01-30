@@ -24,15 +24,13 @@ const initNotes = [
 	},
 ];
 
-
-
 function App() {
   const [notes, setNotes] = useState(initNotes);
   const [valueNewObj, setValueNewObj] = useState(getNewObj());
 
   function getNewObj() {
-  let newObj;
-  return  newObj = {
+    let newObj;
+    return  newObj = {
       id: nanoid(),
       prop1: '',
       prop2: '',
